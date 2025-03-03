@@ -21,8 +21,8 @@ def get_the_cheapest_big_mac_price_by_year(year):
     df = df[df['date'].str.startswith(str(year))]
     if df.empty:
         return "No data"
-    row = df[df['dollar_price'] == df['dollar_price'].min()].iloc[0]
-    return f"{row['name']} ({row['iso_a3']}): ${round(row['dollar_price'], 2)}"
+    row = df.loc[df['dollar_price'].idxmin()]
+    return f"{row['name']}({row['iso_a3']}): ${round(row['dollar_price'], 2)}"
 # Anderson had to break down a lot of this. I am still a bit confused
 # Got some help rewriting code
 
@@ -32,8 +32,8 @@ def get_the_most_expensive_big_mac_price_by_year(year):
     df = df[df['date'].str.startswith(str(year))]
     if df.empty:
         return "No data"
-    row = df[df['dollar_price'] == df['dollar_price'].max()].iloc[0]
-    return f"{row['name']} ({row['iso_a3']}): ${round(row['dollar_price'], 2)}"
+    row = df.loc[df['dollar_price'].idxmax()]
+    return f"{row['name']}({row['iso_a3']}): ${round(row['dollar_price'], 2)}"
 # This was another part that had me confused
 # Rewrote code here too
 
